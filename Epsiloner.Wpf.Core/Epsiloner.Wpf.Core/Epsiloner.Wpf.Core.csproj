@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Epsiloner.Wpf</RootNamespace>
+    <Authors>Veniamin Lytkin @ Epsil0neR</Authors>
+    <Company>https://github.com/Epsil0neR/Epsiloner.Wpf.Core</Company>
+    <Copyright>Veniamin Lytkin @ Epsil0neR</Copyright>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/Epsil0neR/Epsiloner.Wpf.Core/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Epsil0neR/Epsiloner.Wpf.Core</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Epsil0neR/Epsiloner.Wpf.Core</RepositoryUrl>
+    <PackageTags>Epsiloner wpf</PackageTags>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Epsiloner libraries.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\Epsiloner.Wpf.Core.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>
