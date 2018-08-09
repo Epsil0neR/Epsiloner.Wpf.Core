@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Veniamin Lytkin @ Epsil0neR</authors>
+    <owners>Veniamin Lytkin @ Epsil0neR</owners>
+    <licenseUrl>https://raw.githubusercontent.com/Epsil0neR/Epsiloner.Wpf.Core/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Epsil0neR/Epsiloner.Wpf.Core</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>WPF related things</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright © Epsil0neR 2018</copyright>
+    <tags>Epsiloner Wpf</tags>
+  </metadata>
+</package>
