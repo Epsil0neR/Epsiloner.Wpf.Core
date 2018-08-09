@@ -15,6 +15,7 @@ namespace Epsiloner.Wpf.Collections
     public class ObservableCollectionWrap<T>
             : ObservableCollection<T>
     {
+        private const string IndexerName = "Item[]";
         private readonly List<ItemHandlerDelegate<T>> _handlers = new List<ItemHandlerDelegate<T>>();
         private System.Windows.Threading.Dispatcher _dispatcher;
 
@@ -133,10 +134,19 @@ namespace Epsiloner.Wpf.Collections
             AddRangeItems(items);
         }
 
+        /// <summary>
+        /// Replaces all items in collection with single item.
+        /// </summary>
+        /// <param name="item">The object to be added to the end of the <see cref="ObservableCollectionWrap{T}"/>. The value can be null for reference types.</param>
         public void Replace(T item)
         {
             ReplaceRangeItems(new[] { item });
         }
+
+        /// <summary>
+        /// Replaces all items in collection with specified items.
+        /// </summary>
+        /// <param name="items">The objects to be added to the end of the <see cref="ObservableCollectionWrap{T}"/>. Can contain nulls for reference types.</param>
         public void ReplaceRange(IEnumerable<T> items)
         {
             if (items == null)
@@ -145,6 +155,10 @@ namespace Epsiloner.Wpf.Collections
             ReplaceRangeItems(items);
         }
 
+        /// <summary>
+        /// Removes the first occurrences of each specified item from the <see cref="ObservableCollectionWrap{T}"/>.
+        /// </summary>
+        /// <param name="items">The object to remove from the System.Collections.ObjectModel.Collection`1. The value can be null for reference types.</param>
         public void RemoveRange(IEnumerable<T> items)
         {
             if (items == null)
@@ -157,6 +171,10 @@ namespace Epsiloner.Wpf.Collections
         #region Protected Overrides
         //NOTE: MoveItem() does not causes insertion and deletion, so do not execute handlers for that method.
 
+        /// <summary>
+        /// Adds all items to the end of the <see cref="ObservableCollectionWrap{T}"/>.
+        /// </summary>
+        /// <param name="items">Items to insert to the end of the <see cref="ObservableCollectionWrap{T}"/>.</param>
         protected virtual void AddRangeItems(IEnumerable<T> items)
         {
             var itms = items.ToArray();
@@ -170,7 +188,7 @@ namespace Epsiloner.Wpf.Collections
 
             OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             RaisePropertyChanged(nameof(Count));
-            RaisePropertyChanged("Item[]");
+            RaisePropertyChanged(IndexerName);
 
             for (var index = 0; index < itms.Length; index++)
             {
@@ -179,6 +197,10 @@ namespace Epsiloner.Wpf.Collections
             }
         }
 
+        /// <summary>
+        /// Replaces all items in collection with specified items.
+        /// </summary>
+        /// <param name="items">The objects to be added to the end of the <see cref="ObservableCollectionWrap{T}"/>. Can contain nulls for reference types.</param>
         protected virtual void ReplaceRangeItems(IEnumerable<T> items)
         {
             var itms = items.ToArray();
@@ -189,11 +211,11 @@ namespace Epsiloner.Wpf.Collections
             for (var i = 0; i < itms.Length; i++)
             {
                 Items.Insert(i, itms[i]);
-            };
+            }
 
             OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             RaisePropertyChanged(nameof(Count));
-            RaisePropertyChanged("Item[]");
+            RaisePropertyChanged(IndexerName);
 
             for (var index = 0; index < old.Length; index++)
             {
@@ -208,6 +230,10 @@ namespace Epsiloner.Wpf.Collections
             }
         }
 
+        /// <summary>
+        /// Removes the first occurrences of each specified item from the <see cref="ObservableCollectionWrap{T}"/>.
+        /// </summary>
+        /// <param name="items">The object to remove from the System.Collections.ObjectModel.Collection`1. The value can be null for reference types.</param>
         protected virtual void RemoveRangeItems(IEnumerable<T> items)
         {
             var itms = items.ToArray();
@@ -216,7 +242,7 @@ namespace Epsiloner.Wpf.Collections
 
             OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             RaisePropertyChanged(nameof(Count));
-            RaisePropertyChanged("Item[]");
+            RaisePropertyChanged(IndexerName);
 
             for (var index = 0; index < removed.Count; index++)
             {
