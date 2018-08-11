@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>$title$</title>
     <authors>Veniamin Lytkin @ Epsil0neR</authors>
     <owners>Epsil0neR</owners>
@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/Epsil0neR/Epsiloner.Wpf.Core</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>WPF related things</description>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>Added utils for XAML: Save object to file and Load object from file.</releaseNotes>
     <copyright>Copyright © Epsil0neR 2018</copyright>
     <tags>Epsiloner Wpf</tags>
   </metadata>
