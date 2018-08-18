@@ -7,6 +7,9 @@ using Epsiloner.Wpf.Controls;
 
 namespace Epsiloner.Wpf.Attributes
 {
+    /// <summary>
+    /// Marks class to become view for speciefied type and all nested types if type is class and all implementing types if type is interface.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface, AllowMultiple = true)]
     public class ViewForAttribute : Attribute
     {

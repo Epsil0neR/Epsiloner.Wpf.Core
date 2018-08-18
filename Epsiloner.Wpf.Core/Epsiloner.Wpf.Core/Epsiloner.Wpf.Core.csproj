@@ -52,7 +52,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\VIewForAttribute.cs" />
+    <Compile Include="Attributes\ViewForAttribute.cs" />
     <Compile Include="Behaviors\ApplyStyleForSelectedBehavior.cs" />
     <Compile Include="Behaviors\KeyboardNavigationBehavior.cs" />
     <Compile Include="Collections\ItemHandlerDelegate.cs" />
