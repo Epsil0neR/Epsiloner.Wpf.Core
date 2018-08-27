@@ -2,15 +2,19 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <title>$title$</title>
     <authors>Veniamin Lytkin @ Epsil0neR</authors>
     <owners>Epsil0neR</owners>
     <licenseUrl>https://raw.githubusercontent.com/Epsil0neR/Epsiloner.Wpf.Core/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Epsil0neR/Epsiloner.Wpf.Core</projectUrl>
-    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>WPF related things</description>
-    <releaseNotes>Added utils for XAML: Save object to file and Load object from file.</releaseNotes>
+    <releaseNotes>
+Added MultiStyleExtention that allows to merge multiple styles into 1.
+Added KeyboardNavigationBehavior that allows to navigate in any list of items with keyboard.
+Added ApplyStyleForSelectedBehavior that allows to apply style for selected item.
+    </releaseNotes>
     <copyright>Copyright © Epsil0neR 2018</copyright>
     <tags>Epsiloner Wpf</tags>
   </metadata>
