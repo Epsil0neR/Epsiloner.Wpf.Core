@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Interactivity;
 
@@ -21,7 +22,7 @@ namespace Epsiloner.Wpf.Behaviors
         public static DependencyProperty ItemsProperty = DependencyProperty.Register(nameof(Items), typeof(IEnumerable<object>), typeof(KeyboardNavigationBehavior));
 
         /// <summary>
-        /// Command to execute when <see cref="SelectedProperty"/> is set and pressing <see cref="Key.Enter"/>.
+        /// Command to execute when <see cref="SelectedProperty"/> is set and pressing <see cref="ActivateSelectedItemKeyProperty"/>.
         /// </summary>
         public static DependencyProperty ActivateSelectedCommandProperty = DependencyProperty.Register(nameof(ActivateSelectedCommand), typeof(ICommand), typeof(KeyboardNavigationBehavior));
 
@@ -66,7 +67,7 @@ namespace Epsiloner.Wpf.Behaviors
         }
 
         /// <summary>
-        /// (Dependency property) Command to execute when <see cref="Selected"/> is set and pressing <see cref="Key.Enter"/>.
+        /// (Dependency property) Command to execute when <see cref="Selected"/> is set and pressing <see cref="ActivateSelectedItemKey"/>.
         /// </summary>
         public ICommand ActivateSelectedCommand
         {
