@@ -1,4 +1,4 @@
-v1.0.2 -
+v1.0.2 - 2018-08-12
 	Added MultiStyleExtention that allows to merge multiple styles into 1.
 	Added KeyboardNavigationBehavior that allows to navigate in any list of items with keyboard.
 	Added ApplyStyleForSelectedBehavior that allows to apply style for selected item.

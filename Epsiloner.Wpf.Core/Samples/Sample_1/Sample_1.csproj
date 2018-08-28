@@ -35,8 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Epsiloner.Core, Version=1.0.3.0, Culture=neutral, PublicKeyToken=9da3ace43b578b82, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Epsiloner.Core.1.0.3\lib\netstandard2.0\Epsiloner.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Expression.Blend.Sdk.1.0.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +61,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="RelayCommand.cs" />
+    <Compile Include="SampleApplyStyleForSelectedBehavior\SampleApplyStyleForSelectedBehavior.xaml.cs">
+      <DependentUpon>SampleApplyStyleForSelectedBehavior.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SampleApplyStyleForSelectedBehavior\ViewModel.cs" />
+    <Compile Include="SampleKeyboardNavigationBehavior\SampleKeyboardNavigationBehavior.xaml.cs">
+      <DependentUpon>SampleKeyboardNavigationBehavior.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SampleKeyboardNavigationBehavior\ViewModel.cs" />
+    <Compile Include="SampleMultiStyleExtension\SampleMultiStyleExtension.xaml.cs">
+      <DependentUpon>SampleMultiStyleExtension.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,11 +81,22 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SampleApplyStyleForSelectedBehavior\SampleApplyStyleForSelectedBehavior.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SampleKeyboardNavigationBehavior\SampleKeyboardNavigationBehavior.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SampleMultiStyleExtension\SampleMultiStyleExtension.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -87,6 +116,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
