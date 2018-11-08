@@ -7,7 +7,8 @@
 
     <AssemblyName>Epsiloner.Wpf.Core</AssemblyName>
     <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
-    
+    <Description>WPF related things</Description>
+
     <Version>1.0.4</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
@@ -30,7 +31,7 @@
       <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
       <PackageTags>Epsiloner Wpf</PackageTags>
       <PackageVersion>$(Version)</PackageVersion>
-      <PackageDescription>WPF related things</PackageDescription>
+      <PackageDescription>$(Description)</PackageDescription>
       <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">true</GeneratePackageOnBuild>
   </PropertyGroup>
 
