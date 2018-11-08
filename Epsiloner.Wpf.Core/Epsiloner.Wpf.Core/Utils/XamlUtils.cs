@@ -48,7 +48,7 @@ namespace Epsiloner.Wpf.Utils
         }
 
         /// <summary>
-        /// Loads data from file. If file at specified path contains different data type, but can read it - returns null.
+        /// Loads data from file. If file at specified path contains different data type, but cannot read it - returns null.
         /// </summary>
         /// <param name="path"></param>
         /// <typeparam name="T">Data type to load.</typeparam>
