@@ -36,8 +36,8 @@
   </PropertyGroup>
 
   <!-- Documentation -->
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\$(TargetFramework)\Epsiloner.Core.xml</DocumentationFile>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Epsiloner.Core.xml</DocumentationFile>
   </PropertyGroup>
 
   <!-- Exclude misc files -->
