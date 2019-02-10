@@ -1,15 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Epsiloner.Wpf.Collections;
 
 namespace Sample_1.SampleApplyStyleForSelectedBehavior
 {
     public class ViewModel : INotifyPropertyChanged
     {
         private string _selected;
+        private string _selectedEmpty;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public List<string> Items { get; }
+        public System.Collections.ObjectModel.ObservableCollection<string> EmptyList { get; set; }
 
         public string Selected
         {
@@ -17,6 +20,16 @@ namespace Sample_1.SampleApplyStyleForSelectedBehavior
             set
             {
                 _selected = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SelectedEmpty
+        {
+            get { return _selectedEmpty; }
+            set
+            {
+                _selectedEmpty = value;
                 OnPropertyChanged();
             }
         }
@@ -37,8 +50,9 @@ namespace Sample_1.SampleApplyStyleForSelectedBehavior
                 "Nine",
                 "Ten",
             };
-        }
 
+            EmptyList = new System.Collections.ObjectModel.ObservableCollection<string>();
+        }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

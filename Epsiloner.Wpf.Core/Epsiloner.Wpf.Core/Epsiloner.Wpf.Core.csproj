@@ -6,6 +6,7 @@
     <Copyright>Copyright © Epsil0neR 2018</Copyright>
 
     <AssemblyName>Epsiloner.Wpf.Core</AssemblyName>
+    <RootNamespace>Epsiloner.Wpf</RootNamespace>
     <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
     <Description>WPF related things</Description>
 
@@ -50,7 +51,7 @@
 
   <!-- NuGet dependancies -->
   <ItemGroup>
-      <PackageReference Include="Epsiloner.Core" Version="1.0.7" />
+      <PackageReference Include="Epsiloner.Core" Version="1.0.9" />
       <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
   </ItemGroup>
 

@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Sample_1.SampleApplyStyleForSelectedBehavior
 {
@@ -22,6 +11,17 @@ namespace Sample_1.SampleApplyStyleForSelectedBehavior
         public SampleApplyStyleForSelectedBehavior()
         {
             InitializeComponent();
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            var dc = DataContext as ViewModel;
+            if (dc == null)
+                return;
+
+            var v = DateTime.Now.ToString("O");
+            dc.EmptyList.Add(v);
+            dc.SelectedEmpty = v;
         }
     }
 }

@@ -15,6 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -63,5 +64,26 @@
                 </behaviors:ApplyStyleForSelectedBehavior>
             </i:Interaction.Behaviors>
         </ItemsControl>
+
+
+
+        <ListBox Grid.Column="0" Grid.Row="2"
+                 x:Name="EmptyListBox"
+                 SelectedItem="{Binding SelectedEmpty, Mode=TwoWay}" 
+                 ItemsSource="{Binding EmptyList, Mode=OneWay}"/>
+        <ItemsControl Grid.Column="2" Grid.Row="2"
+                      ItemsSource="{Binding EmptyList, Mode=OneWay}">
+            <i:Interaction.Behaviors>
+                <behaviors:ApplyStyleForSelectedBehavior BringSelectedIntoView="True" Selected="{Binding SelectedEmpty}">
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Background" Value="LightCoral" />
+                        <Setter Property="Foreground" Value="DodgerBlue" />
+                    </Style>
+                </behaviors:ApplyStyleForSelectedBehavior>
+            </i:Interaction.Behaviors>
+        </ItemsControl>
+        <Button Grid.Column="1" Grid.Row="2" 
+                Content="Add item" 
+                Click="ButtonBase_OnClick"/>
     </Grid>
 </Window>
