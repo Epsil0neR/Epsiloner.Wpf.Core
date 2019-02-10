@@ -10,7 +10,7 @@
     <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
     <Description>WPF related things</Description>
 
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
 
@@ -23,12 +23,12 @@
       <PackageId>$(AssemblyName)</PackageId>
       <PackageLicenseUrl>https://raw.githubusercontent.com/Epsil0neR/Epsiloner.Wpf.Core/master/LICENSE</PackageLicenseUrl>
       <PackageProjectUrl>https://github.com/Epsil0neR/Epsiloner.Wpf.Core</PackageProjectUrl>
-      <PackageReleaseNotes>
-        Added support to .NET v4.5, v4.6
-        Added MultiStyleExtension that allows to merge multiple styles into 1.
-        Added KeyboardNavigationBehavior that allows to navigate in any list of items with keyboard.
-        Added ApplyStyleForSelectedBehavior that allows to apply style for selected item.
-      </PackageReleaseNotes>
+      <PackageReleaseNotes>Fixing bug with too early selection of added item.
+Renamed collections - now they are without 'Wrap' postfix.
+Added support to .NET v4.5, v4.6
+Added MultiStyleExtension that allows to merge multiple styles into 1.
+Added KeyboardNavigationBehavior that allows to navigate in any list of items with keyboard.
+Added ApplyStyleForSelectedBehavior that allows to apply style for selected item.</PackageReleaseNotes>
       <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
       <PackageTags>Epsiloner Wpf</PackageTags>
       <PackageVersion>$(Version)</PackageVersion>
