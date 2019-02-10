@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using Epsiloner.Wpf.Extensions;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interactivity;
 using System.Windows.Markup;
 using System.Windows.Media;
-using Epsiloner.Wpf.Extensions;
 
 namespace Epsiloner.Wpf.Behaviors
 {
@@ -66,6 +67,19 @@ namespace Epsiloner.Wpf.Behaviors
             set { SetValue(BringSelectedIntoViewProperty, value); }
         }
 
+        protected override void OnAttached()
+        {
+            base.OnAttached();
+
+            AssociatedObject.LayoutUpdated += AssociatedObjectOnLayoutUpdated;
+        }
+
+        protected override void OnDetaching()
+        {
+            AssociatedObject.LayoutUpdated -= AssociatedObjectOnLayoutUpdated;
+            base.OnDetaching();
+        }
+
         private void Preceed(object oldValue, object newValue)
         {
             if (oldValue != null)
@@ -88,10 +102,19 @@ namespace Epsiloner.Wpf.Behaviors
             }
         }
 
+        private object _waitForNewItem = null;
+
         private bool Proceed(object newValue, ContentPresenter cp)
         {
             if (cp == null)
                 return false;
+
+            var count = VisualTreeHelper.GetChildrenCount(cp);
+            if (count < 1)
+            {
+                _waitForNewItem = newValue;
+                return false;
+            }
 
             var element = VisualTreeHelper.GetChild(cp, 0) as FrameworkElement;
             if (element != null)
@@ -115,6 +138,28 @@ namespace Epsiloner.Wpf.Behaviors
             }
 
             return true;
+        }
+
+        private void AssociatedObjectOnLayoutUpdated(object sender, EventArgs e)
+        {
+            if (_waitForNewItem == null)
+                return;
+
+            var test = AssociatedObject;
+            var container = AssociatedObject?.ItemContainerGenerator.ContainerFromItem(_waitForNewItem);
+            if (container == null) return;
+
+            if (Proceed(_waitForNewItem, container as ContentPresenter))
+            {
+                _waitForNewItem = null;
+                return;
+            }
+
+            if (Proceed(_waitForNewItem, container as DataGridRow))
+            {
+                _waitForNewItem = null;
+                return;
+            }
         }
 
         private bool Proceed(object newValue, DataGridRow row)
