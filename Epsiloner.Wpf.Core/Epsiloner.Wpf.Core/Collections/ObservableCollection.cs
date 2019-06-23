@@ -40,7 +40,7 @@ namespace Epsiloner.Wpf.Collections
         /// </summary>
         public System.Windows.Threading.Dispatcher Dispatcher
         {
-            get { return _dispatcher; }
+            get => _dispatcher;
             set
             {
                 if (value == _dispatcher)

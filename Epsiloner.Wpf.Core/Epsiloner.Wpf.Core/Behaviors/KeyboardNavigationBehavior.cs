@@ -70,8 +70,8 @@ namespace Epsiloner.Wpf.Behaviors
         /// </summary>
         public ICommand ActivateSelectedCommand
         {
-            get { return (ICommand)GetValue(ActivateSelectedCommandProperty); }
-            set { SetValue(ActivateSelectedCommandProperty, value); }
+            get => (ICommand)GetValue(ActivateSelectedCommandProperty);
+            set => SetValue(ActivateSelectedCommandProperty, value);
         }
 
         /// <summary>
@@ -79,8 +79,8 @@ namespace Epsiloner.Wpf.Behaviors
         /// </summary>
         public IEnumerable<object> Items
         {
-            get { return (IEnumerable<object>)GetValue(ItemsProperty); }
-            set { SetValue(ItemsProperty, value); }
+            get => (IEnumerable<object>)GetValue(ItemsProperty);
+            set => SetValue(ItemsProperty, value);
         }
 
         /// <summary>
@@ -88,8 +88,8 @@ namespace Epsiloner.Wpf.Behaviors
         /// </summary>
         public object Selected
         {
-            get { return GetValue(SelectedProperty); }
-            set { SetValue(SelectedProperty, value); }
+            get => GetValue(SelectedProperty);
+            set => SetValue(SelectedProperty, value);
         }
 
         /// <summary>
@@ -97,8 +97,8 @@ namespace Epsiloner.Wpf.Behaviors
         /// </summary>
         public bool IsEnabled
         {
-            get { return (bool)GetValue(IsEnabledProperty); }
-            set { SetValue(IsEnabledProperty, value); }
+            get => (bool)GetValue(IsEnabledProperty);
+            set => SetValue(IsEnabledProperty, value);
         }
 
         /// <summary>
@@ -106,8 +106,8 @@ namespace Epsiloner.Wpf.Behaviors
         /// </summary>
         public Key PrevItemKey
         {
-            get { return (Key)GetValue(PrevItemKeyProperty); }
-            set { SetValue(PrevItemKeyProperty, value); }
+            get => (Key)GetValue(PrevItemKeyProperty);
+            set => SetValue(PrevItemKeyProperty, value);
         }
 
         /// <summary>
@@ -115,8 +115,8 @@ namespace Epsiloner.Wpf.Behaviors
         /// </summary>
         public Key NextItemKey
         {
-            get { return (Key)GetValue(NextItemKeyProperty); }
-            set { SetValue(NextItemKeyProperty, value); }
+            get => (Key)GetValue(NextItemKeyProperty);
+            set => SetValue(NextItemKeyProperty, value);
         }
 
         /// <summary>
@@ -124,8 +124,8 @@ namespace Epsiloner.Wpf.Behaviors
         /// </summary>
         public Key ActivateSelectedItemKey
         {
-            get { return (Key)GetValue(ActivateSelectedItemKeyProperty); }
-            set { SetValue(ActivateSelectedItemKeyProperty, value); }
+            get => (Key)GetValue(ActivateSelectedItemKeyProperty);
+            set => SetValue(ActivateSelectedItemKeyProperty, value);
         }
 
 

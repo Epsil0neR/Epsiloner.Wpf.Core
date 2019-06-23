@@ -25,7 +25,7 @@ namespace Epsiloner.Wpf.Behaviors
         /// Gets or sets currently selected item.
         /// </summary>
         public static DependencyProperty SelectedProperty = DependencyProperty.Register(nameof(Selected), typeof(object), typeof(ApplyStyleForSelectedBehavior),
-            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None, SeletedPropertyChangedCallback));
+            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None, SelectedPropertyChangedCallback));
 
         /// <summary>
         /// Indicates if selected item should be bringed into view.
@@ -33,9 +33,9 @@ namespace Epsiloner.Wpf.Behaviors
         public static DependencyProperty BringSelectedIntoViewProperty = DependencyProperty.Register(nameof(BringSelectedIntoView), typeof(bool), typeof(ApplyStyleForSelectedBehavior));
 
 
-        private static void SeletedPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void SelectedPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            (d as ApplyStyleForSelectedBehavior)?.Preceed(e.OldValue, e.NewValue);
+            (d as ApplyStyleForSelectedBehavior)?.Proceed(e.OldValue, e.NewValue);
         }
 
         private readonly List<ViewState> _states = new List<ViewState>();
@@ -45,8 +45,8 @@ namespace Epsiloner.Wpf.Behaviors
         /// </summary>
         public object Selected
         {
-            get { return GetValue(SelectedProperty); }
-            set { SetValue(SelectedProperty, value); }
+            get => GetValue(SelectedProperty);
+            set => SetValue(SelectedProperty, value);
         }
 
         /// <summary>
@@ -54,8 +54,8 @@ namespace Epsiloner.Wpf.Behaviors
         /// </summary>
         public Style SelectedStyle
         {
-            get { return (Style)GetValue(SelectedStyleProperty); }
-            set { SetValue(SelectedStyleProperty, value); }
+            get => (Style)GetValue(SelectedStyleProperty);
+            set => SetValue(SelectedStyleProperty, value);
         }
 
         /// <summary>
@@ -63,8 +63,8 @@ namespace Epsiloner.Wpf.Behaviors
         /// </summary>
         public bool BringSelectedIntoView
         {
-            get { return (bool)GetValue(BringSelectedIntoViewProperty); }
-            set { SetValue(BringSelectedIntoViewProperty, value); }
+            get => (bool)GetValue(BringSelectedIntoViewProperty);
+            set => SetValue(BringSelectedIntoViewProperty, value);
         }
 
         protected override void OnAttached()
@@ -80,7 +80,7 @@ namespace Epsiloner.Wpf.Behaviors
             base.OnDetaching();
         }
 
-        private void Preceed(object oldValue, object newValue)
+        private void Proceed(object oldValue, object newValue)
         {
             if (oldValue != null)
             {
@@ -116,8 +116,7 @@ namespace Epsiloner.Wpf.Behaviors
                 return false;
             }
 
-            var element = VisualTreeHelper.GetChild(cp, 0) as FrameworkElement;
-            if (element != null)
+            if (VisualTreeHelper.GetChild(cp, 0) is FrameworkElement element)
             {
                 if (SelectedStyle != null)
                 {

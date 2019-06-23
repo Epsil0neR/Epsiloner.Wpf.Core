@@ -15,10 +15,7 @@ namespace Epsiloner.Wpf.Controls
         /// <summary>
         /// Default data template selector for views which uses <see cref="ViewForAttribute"/> attribute.
         /// </summary>
-        public static ViewDataTemplateSelector Instance
-        {
-            get => _instance ?? (_instance = new ViewDataTemplateSelector());
-        }
+        public static ViewDataTemplateSelector Instance => _instance ?? (_instance = new ViewDataTemplateSelector());
 
         private ViewDataTemplateSelector()
         {

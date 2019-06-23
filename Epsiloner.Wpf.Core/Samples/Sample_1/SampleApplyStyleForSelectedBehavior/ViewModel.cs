@@ -16,7 +16,7 @@ namespace Sample_1.SampleApplyStyleForSelectedBehavior
 
         public string Selected
         {
-            get { return _selected; }
+            get => _selected;
             set
             {
                 _selected = value;
@@ -26,7 +26,7 @@ namespace Sample_1.SampleApplyStyleForSelectedBehavior
 
         public string SelectedEmpty
         {
-            get { return _selectedEmpty; }
+            get => _selectedEmpty;
             set
             {
                 _selectedEmpty = value;

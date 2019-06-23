@@ -16,7 +16,7 @@ namespace Sample_1.SampleKeyboardNavigationBehavior
 
         public string Selected
         {
-            get { return _selected; }
+            get => _selected;
             set
             {
                 _selected = value;

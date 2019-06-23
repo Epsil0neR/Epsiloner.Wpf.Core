@@ -1,3 +1,14 @@
+v1.0.7 - 2019-06-24
+	Added AutoFocusBehavior.
+
+v1.0.6
+    Fixed documentation file.
+
+v1.0.5
+    Fixing bug with too early selection of added item.
+    Renamed collections - now they are without 'Wrap' postfix.
+    Added support to .NET v4.5, v4.6
+
 v1.0.2 - 2018-08-12
 	Added MultiStyleExtention that allows to merge multiple styles into 1.
 	Added KeyboardNavigationBehavior that allows to navigate in any list of items with keyboard.

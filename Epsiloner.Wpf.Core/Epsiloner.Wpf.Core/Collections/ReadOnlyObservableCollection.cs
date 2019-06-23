@@ -12,7 +12,6 @@ namespace Epsiloner.Wpf.Collections
     public class ReadOnlyObservableCollection<T>
         : Epsiloner.Collections.ReadOnlyObservableCollection<T>
     {
-        private readonly Epsiloner.Collections.ObservableCollection<T> _observableCollection;
         private System.Windows.Threading.Dispatcher _dispatcher;
 
         #region Properties
@@ -23,7 +22,7 @@ namespace Epsiloner.Wpf.Collections
         /// </summary>
         public System.Windows.Threading.Dispatcher Dispatcher
         {
-            get { return _dispatcher; }
+            get => _dispatcher;
             set
             {
                 if (value == _dispatcher)
