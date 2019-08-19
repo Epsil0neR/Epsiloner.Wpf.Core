@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Epsiloner.Wpf.Attributes;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace Epsiloner.Wpf.ViewModels
@@ -13,6 +17,49 @@ namespace Epsiloner.Wpf.ViewModels
     /// </summary>
     public abstract class ViewModel : IViewModel
     {
+        #region "Static"
+        private static readonly Dictionary<Type, Dictionary<string, IEnumerable<string>>> Dependencies = new Dictionary<Type, Dictionary<string, IEnumerable<string>>>();
+
+        private static void ProcessType(Type type)
+        {
+            lock (Dependencies)
+            {
+                if (Dependencies.ContainsKey(type))
+                    return;
+
+                var t = typeof(DependsOnAttribute);
+                var props = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                var dict = new Dictionary<string, List<string>>();
+
+                foreach (var prop in props)
+                {
+                    var attributes = prop.GetCustomAttributes(t, true);
+                    foreach (var attribute in attributes)
+                    {
+                        var attr = (DependsOnAttribute)attribute;
+                        if (attr.Properties == null)
+                            continue;
+
+                        foreach (var p in attr.Properties)
+                        {
+                            var list = dict.ContainsKey(p) ? dict[p] : (dict[p] = new List<string>());
+                            list.Add(prop.Name);
+                        }
+                    }
+                }
+
+                var result = dict.ToDictionary(x => x.Key, x => x.Value.Distinct().ToList() as IEnumerable<string>);
+                Dependencies[type] = result.Any() ? result : null;
+            }
+        }
+        #endregion
+
+
+        protected ViewModel()
+        {
+            ProcessType(GetType());
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
@@ -34,6 +81,16 @@ namespace Epsiloner.Wpf.ViewModels
 
                 if (dependingPropertyNames != null)
                     foreach (var name in dependingPropertyNames)
+                        RaisePropertyChanged(name);
+
+                var t = GetType();
+                Dictionary<string, IEnumerable<string>> dependencies;
+
+                lock (Dependencies)
+                    dependencies = Dependencies.ContainsKey(t) ? Dependencies[t] : null;
+
+                if (propertyName != null && dependencies?.ContainsKey(propertyName) == true)
+                    foreach (var name in dependencies[propertyName])
                         RaisePropertyChanged(name);
             }
             return valueChanged;

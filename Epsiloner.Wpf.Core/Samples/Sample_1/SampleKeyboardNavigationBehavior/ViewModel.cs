@@ -3,13 +3,13 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
+using Epsiloner.Wpf.Attributes;
 
 namespace Sample_1.SampleKeyboardNavigationBehavior
 {
-    public class ViewModel : INotifyPropertyChanged
+    public class ViewModel : Epsiloner.Wpf.ViewModels.ViewModel
     {
         private string _selected;
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public List<string> Items { get; }
         public ICommand ActivateCommand { get; }
@@ -19,12 +19,12 @@ namespace Sample_1.SampleKeyboardNavigationBehavior
             get => _selected;
             set
             {
-                _selected = value;
-                OnPropertyChanged();
-                OnPropertyChanged();
+                Set(ref _selected, value);
             }
         }
 
+        [DependsOn(nameof(ViewModel.Selected))]
+        public string Test { get; set; }
 
         /// <inheritdoc />
         public ViewModel()
@@ -44,17 +44,19 @@ namespace Sample_1.SampleKeyboardNavigationBehavior
             };
 
             ActivateCommand = new RelayCommand(Activate);
+
+            PropertyChanged += OnPropertyChanged;
+        }
+
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var propName = e.PropertyName;
+            // When `Selected` changes -> `Test` also should notify that `Test` changed.
         }
 
         private void Activate(object obj)
         {
             MessageBox.Show("Activating: " + obj);
-        }
-
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
