@@ -35,8 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Epsiloner.Core, Version=1.0.3.0, Culture=neutral, PublicKeyToken=9da3ace43b578b82, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Epsiloner.Core.1.0.3\lib\netstandard2.0\Epsiloner.Core.dll</HintPath>
+    <Reference Include="Epsiloner.Core, Version=1.0.11.0, Culture=neutral, PublicKeyToken=9da3ace43b578b82, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Epsiloner.Core.1.0.11\lib\net461\Epsiloner.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
