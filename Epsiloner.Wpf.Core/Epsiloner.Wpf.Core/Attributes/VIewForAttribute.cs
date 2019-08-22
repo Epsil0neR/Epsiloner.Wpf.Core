@@ -8,14 +8,21 @@ using Epsiloner.Wpf.Controls;
 namespace Epsiloner.Wpf.Attributes
 {
     /// <summary>
-    /// Marks class to become view for speciefied type and all nested types if type is class and all implementing types if type is interface.
+    /// Marks class to become view for specified type and all nested types if type is class and all implementing types if type is interface.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface, AllowMultiple = true)]
     public class ViewForAttribute : Attribute
     {
         #region Instance
+        /// <summary>
+        /// Type which marked class represents in UI.
+        /// </summary>
         public Type Type { get; set; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="type"></param>
         public ViewForAttribute(Type type)
         {
             Type = type;
@@ -78,7 +85,7 @@ namespace Epsiloner.Wpf.Attributes
             foreach (Type type in types)
             {
                 // Try get attribute for each type
-                var attributes = Attribute.GetCustomAttributes(type, _type, true);
+                var attributes = GetCustomAttributes(type, _type, true);
 
                 foreach (var attribute in attributes)
                 {
@@ -103,7 +110,7 @@ namespace Epsiloner.Wpf.Attributes
 
 
         /// <summary>
-        /// Gets best matching registered view for speficified model type.
+        /// Gets best matching registered view for specified model type.
         /// </summary>
         /// <param name="modelType">Type of model.</param>
         /// <returns></returns>
@@ -120,8 +127,7 @@ namespace Epsiloner.Wpf.Attributes
             var interfaces = modelType.GetDirectlyImplementedInterfaces();
             foreach (Type type in interfaces)
             {
-                Type rv;
-                if (_bestMatchingTypes.TryGetValue(type, out rv))
+                if (_bestMatchingTypes.TryGetValue(type, out var rv))
                 {
                     RegisterType(type, rv);
                     return rv;
@@ -144,7 +150,7 @@ namespace Epsiloner.Wpf.Attributes
         }
 
         /// <summary>
-        /// Gets best matching registered view for speficified model object.
+        /// Gets best matching registered view for specified model object.
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
