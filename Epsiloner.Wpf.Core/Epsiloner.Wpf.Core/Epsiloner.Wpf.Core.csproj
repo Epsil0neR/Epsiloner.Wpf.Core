@@ -26,9 +26,6 @@
       <PackageReleaseNotes>
         v1.0.9
         Added ViewModelUtil that lets inject ViewModel logic anywhere.
-        ViewModel is now uses ViewModelUtil inside to still have unified logic for setting properties and notify about their changes.
-        v1.0.9
-        Added ViewModelUtil that lets inject ViewModel logic anywhere.
         ViewModel is now uses ViewModelUtil inside to still have unified logic for setting properties.
         v1.0.8
         Added DependsOnAttribute that lets add property dependance when another property changes (works only with ViewModel.Set method).
