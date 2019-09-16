@@ -19,12 +19,12 @@ namespace Sample_1.SampleKeyboardNavigationBehavior
             get => _selected;
             set
             {
-                Set(ref _selected, value);
+                Set(ref _selected, value, nameof(Selected), nameof(Test));
             }
         }
 
         [DependsOn(nameof(ViewModel.Selected))]
-        public string Test { get; set; }
+        public string Test => $"({Selected}) {Items.Count}";
 
         /// <inheritdoc />
         public ViewModel()

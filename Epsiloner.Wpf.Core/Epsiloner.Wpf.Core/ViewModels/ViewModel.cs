@@ -1,10 +1,7 @@
-﻿using Epsiloner.Wpf.Attributes;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Epsiloner.Wpf.Attributes;
+using Epsiloner.Wpf.Utils;
 
 namespace Epsiloner.Wpf.ViewModels
 {
@@ -17,53 +14,25 @@ namespace Epsiloner.Wpf.ViewModels
     /// </summary>
     public abstract class ViewModel : IViewModel
     {
-        #region "Static"
-        private static readonly Dictionary<Type, Dictionary<string, IEnumerable<string>>> Dependencies = new Dictionary<Type, Dictionary<string, IEnumerable<string>>>();
-
-        private static void ProcessType(Type type)
-        {
-            lock (Dependencies)
-            {
-                if (Dependencies.ContainsKey(type))
-                    return;
-
-                var t = typeof(DependsOnAttribute);
-                var props = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-                var dict = new Dictionary<string, List<string>>();
-
-                foreach (var prop in props)
-                {
-                    var attributes = prop.GetCustomAttributes(t, true);
-                    foreach (var attribute in attributes)
-                    {
-                        var attr = (DependsOnAttribute)attribute;
-                        if (attr.Properties == null)
-                            continue;
-
-                        foreach (var p in attr.Properties)
-                        {
-                            var list = dict.ContainsKey(p) ? dict[p] : (dict[p] = new List<string>());
-                            list.Add(prop.Name);
-                        }
-                    }
-                }
-
-                var result = dict.ToDictionary(x => x.Key, x => x.Value.Distinct().ToList() as IEnumerable<string>);
-                Dependencies[type] = result.Any() ? result : null;
-            }
-        }
-        #endregion
-
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
         protected ViewModel()
         {
-            ProcessType(GetType());
+            ViewModelUtil = new ViewModelUtil(this.GetType(), RaisePropertyChanged);
         }
 
+        /// <summary>
+        /// Util that actually contains whole logic for value set and notification of all related properties.
+        /// </summary>
+        protected ViewModelUtil ViewModelUtil { get; }
+
+        /// <inheritdoc />
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// Sets new value for backing field and raises <see cref="PropertyChanged"/> event for <see cref="propertyName"/> and all depending properties.
+        /// Sets new value for backing field and raises <see cref="INotifyPropertyChanged.PropertyChanged"/> event for <paramref name="propertyName"/> and all depending properties.
+        /// Depending properties can be specified in param <paramref name="dependingPropertyNames"/> or via attribute <see cref="DependsOnAttribute"/> in same class.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="backingField">Backing field</param>
@@ -73,29 +42,13 @@ namespace Epsiloner.Wpf.ViewModels
         /// <returns></returns>
         protected bool Set<T>(ref T backingField, T newValue, [CallerMemberName] string propertyName = null, params string[] dependingPropertyNames)
         {
-            bool valueChanged = !EqualityComparer<T>.Default.Equals(backingField, newValue);
-            if (valueChanged)
-            {
-                backingField = newValue;
-                RaisePropertyChanged(propertyName);
-
-                if (dependingPropertyNames != null)
-                    foreach (var name in dependingPropertyNames)
-                        RaisePropertyChanged(name);
-
-                var t = GetType();
-                Dictionary<string, IEnumerable<string>> dependencies;
-
-                lock (Dependencies)
-                    dependencies = Dependencies.ContainsKey(t) ? Dependencies[t] : null;
-
-                if (propertyName != null && dependencies?.ContainsKey(propertyName) == true)
-                    foreach (var name in dependencies[propertyName])
-                        RaisePropertyChanged(name);
-            }
-            return valueChanged;
+            return ViewModelUtil.Set(ref backingField, newValue, propertyName, dependingPropertyNames);
         }
 
+        /// <summary>
+        /// Raises <see cref="INotifyPropertyChanged.PropertyChanged"/> event for specified <paramref name="propertyName"/>.
+        /// </summary>
+        /// <param name="propertyName">Name of property which value has been changed.</param>
         protected void RaisePropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
