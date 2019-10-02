@@ -1,5 +1,10 @@
-Pending:
+v1.0.10:
+	Removed DependsOnAttribute to use System.Windows.Markup.DependsOnAttribute instead.
+
+v1.0.9:
 	Improved documentation
+	Created ViewModel util that lets any class easily use logic of ViewModel class.
+	Introduced DependsOnAttribute.
 
 v1.0.8
     Added DependsOnAttribute that lets add property dependance when another property changes (works only with ViewModel.Set method).

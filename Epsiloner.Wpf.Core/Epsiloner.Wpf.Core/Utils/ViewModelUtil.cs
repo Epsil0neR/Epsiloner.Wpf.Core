@@ -4,10 +4,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using Epsiloner.Wpf.Attributes;
+using System.Windows.Markup;
+using Epsiloner.Wpf.ViewModels;
 
 namespace Epsiloner.Wpf.Utils
 {
+    /// <summary>
+    /// Provides <see cref="ViewModel"/> behavior to any type that cannot inherit from <see cref="ViewModel"/>.
+    /// </summary>
     public class ViewModelUtil
     {
         #region "Static"
@@ -30,14 +34,12 @@ namespace Epsiloner.Wpf.Utils
                     foreach (var attribute in attributes)
                     {
                         var attr = (DependsOnAttribute)attribute;
-                        if (attr.Properties == null)
+                        if (attr.Name == null)
                             continue;
 
-                        foreach (var p in attr.Properties)
-                        {
-                            var list = dict.ContainsKey(p) ? dict[p] : (dict[p] = new List<string>());
-                            list.Add(prop.Name);
-                        }
+                        var name = attr.Name;
+                        var list = dict.ContainsKey(name) ? dict[name] : (dict[name] = new List<string>());
+                        list.Add(prop.Name);
                     }
                 }
 

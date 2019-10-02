@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
-using Epsiloner.Wpf.Attributes;
+using System.Windows.Markup;
 
 namespace Sample_1.SampleKeyboardNavigationBehavior
 {
