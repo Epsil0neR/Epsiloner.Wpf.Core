@@ -66,6 +66,10 @@
       <DependentUpon>SampleApplyStyleForSelectedBehavior.xaml</DependentUpon>
     </Compile>
     <Compile Include="SampleApplyStyleForSelectedBehavior\ViewModel.cs" />
+    <Compile Include="SampleGridColumnsForItemsBehavior\SampleGridColumnsForItemsBehavior.xaml.cs">
+      <DependentUpon>SampleGridColumnsForItemsBehavior.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SampleGridColumnsForItemsBehavior\ViewModel.cs" />
     <Compile Include="SampleKeyboardNavigationBehavior\SampleKeyboardNavigationBehavior.xaml.cs">
       <DependentUpon>SampleKeyboardNavigationBehavior.xaml</DependentUpon>
     </Compile>
@@ -86,6 +90,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SampleApplyStyleForSelectedBehavior\SampleApplyStyleForSelectedBehavior.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SampleGridColumnsForItemsBehavior\SampleGridColumnsForItemsBehavior.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,5 +139,6 @@
       <Name>Epsiloner.Wpf.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

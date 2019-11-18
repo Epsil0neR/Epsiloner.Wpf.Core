@@ -24,8 +24,10 @@
       <PackageLicenseUrl>https://raw.githubusercontent.com/Epsil0neR/Epsiloner.Wpf.Core/master/LICENSE</PackageLicenseUrl>
       <PackageProjectUrl>https://github.com/Epsil0neR/Epsiloner.Wpf.Core</PackageProjectUrl>
       <PackageReleaseNotes>
+        v1.0.11:
+
         v1.0.10:
-	      Removed DependsOnAttribute to use System.Windows.Markup.DependsOnAttribute instead.
+        Removed DependsOnAttribute to use System.Windows.Markup.DependsOnAttribute instead.
         v1.0.9
         Added ViewModelUtil that lets inject ViewModel logic anywhere.
         ViewModel is now uses ViewModelUtil inside to still have unified logic for setting properties.
@@ -42,7 +44,7 @@
         Added MultiStyleExtension that allows to merge multiple styles into 1.
         Added KeyboardNavigationBehavior that allows to navigate in any list of items with keyboard.
         Added ApplyStyleForSelectedBehavior that allows to apply style for selected item.
-</PackageReleaseNotes>
+      </PackageReleaseNotes>
       <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
       <PackageTags>Epsiloner Wpf</PackageTags>
       <PackageVersion>$(Version)</PackageVersion>
@@ -65,7 +67,7 @@
 
   <!-- NuGet dependancies -->
   <ItemGroup>
-    <PackageReference Include="Epsiloner.Core" Version="1.0.9" />
+    <PackageReference Include="Epsiloner.Core" Version="1.0.11" />
     <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
   </ItemGroup>
 

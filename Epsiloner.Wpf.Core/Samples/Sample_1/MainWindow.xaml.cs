@@ -23,5 +23,10 @@ namespace Sample_1
         {
             new SampleMultiStyleExtension.SampleMultiStyleExtension().Show();
         }
+
+        private void GridColumnsForItemsBehavior_OnClick(object sender, RoutedEventArgs e)
+        {
+            new SampleGridColumnsForItemsBehavior.SampleGridColumnsForItemsBehavior().Show();
+        }
     }
 }
