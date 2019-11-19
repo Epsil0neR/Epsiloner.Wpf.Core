@@ -26,7 +26,7 @@ namespace Sample_1
 
         private void GridColumnsForItemsBehavior_OnClick(object sender, RoutedEventArgs e)
         {
-            new SampleGridColumnsForItemsBehavior.SampleGridColumnsForItemsBehavior().Show();
+            new SampleSmartGridBehavior.SampleSmartGridBehavior().Show();
         }
     }
 }

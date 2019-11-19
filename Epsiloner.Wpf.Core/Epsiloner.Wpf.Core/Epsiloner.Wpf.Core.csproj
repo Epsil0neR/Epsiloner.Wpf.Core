@@ -10,7 +10,7 @@
     <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
     <Description>WPF related things</Description>
 
-    <Version>1.0.11</Version>
+    <Version>1.0.12</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
 
@@ -24,6 +24,9 @@
       <PackageLicenseUrl>https://raw.githubusercontent.com/Epsil0neR/Epsiloner.Wpf.Core/master/LICENSE</PackageLicenseUrl>
       <PackageProjectUrl>https://github.com/Epsil0neR/Epsiloner.Wpf.Core</PackageProjectUrl>
       <PackageReleaseNotes>
+        v1.0.12:
+        GridColumnsForItemsBehavior renamed to SmartGridBehavior.
+        SmartGridBehavior added caching, fixed bugs with dispatcher.
         v1.0.11:
         GridColumnsForItemsBehavior that lets use Grid as table with rows by specifying maximum columns per row, otherwise all items will be in same row.
         v1.0.10:

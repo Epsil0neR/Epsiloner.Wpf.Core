@@ -25,7 +25,7 @@
         <TextBlock Text="Behaviors:" />
         <Button Click="ApplyStyleForSelectedBehavior_OnClick" Content="ApplyStyleForSelectedBehavior" />
         <Button Click="KeyboardNavigationBehavior_OnClick" Content="KeyboardNavigationBehavior" />
-        <Button Click="GridColumnsForItemsBehavior_OnClick" Content="GridColumnsForItemsBehavior" />
+        <Button Click="GridColumnsForItemsBehavior_OnClick" Content="SmartGridBehavior" />
         <Separator />
 
         <TextBlock Text="Extensions:" />

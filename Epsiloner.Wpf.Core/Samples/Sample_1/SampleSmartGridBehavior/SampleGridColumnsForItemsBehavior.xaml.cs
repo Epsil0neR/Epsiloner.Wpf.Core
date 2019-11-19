@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Sample_1.SampleGridColumnsForItemsBehavior
 {
     /// <summary>
-    /// Interaction logic for SampleGridColumnsForItemsBehavior.xaml
+    /// Interaction logic for SampleSmartGridBehavior.xaml
     /// </summary>
-    public partial class SampleGridColumnsForItemsBehavior : Window
+    public partial class SampleSmartGridBehavior : Window
     {
-        public SampleGridColumnsForItemsBehavior()
+        public SampleSmartGridBehavior()
         {
             InitializeComponent();
         }

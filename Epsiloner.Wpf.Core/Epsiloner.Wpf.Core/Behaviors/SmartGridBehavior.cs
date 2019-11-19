@@ -13,7 +13,7 @@ namespace Epsiloner.Wpf.Behaviors
     /// <summary>
     /// Populates grid with specified items via <see cref="ContentControl"/> in equal columns.
     /// </summary>
-    public class GridColumnsForItemsBehavior : Behavior<Grid>
+    public class SmartGridBehavior : Behavior<Grid>
     {
         /// <summary>
         /// Items for <see cref="Grid"/>.
@@ -21,7 +21,7 @@ namespace Epsiloner.Wpf.Behaviors
         public static DependencyProperty ItemsSourceProperty = DependencyProperty.Register(
             nameof(ItemsSource),
             typeof(IEnumerable),
-            typeof(GridColumnsForItemsBehavior),
+            typeof(SmartGridBehavior),
             new PropertyMetadata(null, ItemsSourceChanged));
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Epsiloner.Wpf.Behaviors
         public static DependencyProperty MaxInRowProperty = DependencyProperty.Register(
             nameof(MaxInRow),
             typeof(int?),
-            typeof(GridColumnsForItemsBehavior),
+            typeof(SmartGridBehavior),
             new PropertyMetadata(null, MaxInRowChanged));
 
         private readonly EventCooldown _cooldown;
@@ -56,20 +56,24 @@ namespace Epsiloner.Wpf.Behaviors
 
         private static void ItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var s = (GridColumnsForItemsBehavior)d;
+            var s = (SmartGridBehavior)d;
             s?._cooldown.Now();
         }
         private static void MaxInRowChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var s = (GridColumnsForItemsBehavior)d;
+            var s = (SmartGridBehavior)d;
             s?._cooldown.Now();
         }
 
-        public GridColumnsForItemsBehavior()
+        /// <summary>
+        /// Constructor for <see cref="SmartGridBehavior"/>.
+        /// </summary>
+        public SmartGridBehavior()
         {
             _cooldown = new EventCooldown(TimeSpan.FromMilliseconds(100), CooldownHandler);
         }
 
+        /// <inheritdoc />
         protected override void OnAttached()
         {
             base.OnAttached();
@@ -80,6 +84,7 @@ namespace Epsiloner.Wpf.Behaviors
             _cooldown.Now();
         }
 
+        /// <inheritdoc />
         protected override void OnDetaching()
         {
             _attached = false;
@@ -102,24 +107,30 @@ namespace Epsiloner.Wpf.Behaviors
             _cooldown.Accumulate();
         }
 
+        private List<ContentControl> _cached = new List<ContentControl>();
+
         private void CooldownHandler()
         {
-            var items = ItemsSource?.Cast<object>().ToList() ?? new List<object>();
-            int cols = items.Count;
-            int rows = 0;
-
-            if (MaxInRow.HasValue && MaxInRow > 0)
-            {
-                rows = Math.DivRem(items.Count, MaxInRow.Value, out var rem);
-                if (rows > 0)
-                    cols = MaxInRow.Value;
-            }
-
             Dispatcher.Invoke(() =>
             {
+                var items = ItemsSource?.Cast<object>().ToList() ?? new List<object>();
+                int cols = items.Count;
+                int rows = 0;
+
+                if (MaxInRow.HasValue && MaxInRow > 0)
+                {
+                    rows = Math.DivRem(items.Count, MaxInRow.Value, out var rem);
+                    if (rows > 0)
+                    {
+                        cols = MaxInRow.Value;
+                        rows += (rem > 0 ? 1 : 0);
+                    }
+                }
+
                 if (cols == 0 || !_attached)
                 {
                     CleanUp();
+                    CleanUpCache(items);
                     return;
                 }
 
@@ -127,7 +138,7 @@ namespace Epsiloner.Wpf.Behaviors
                 {
                     var rd = AssociatedObject.RowDefinitions;
                     rd.Clear();
-                    for (var i = 0; i <= rows; i++)
+                    for (var i = 0; i < rows; i++)
                         rd.Add(new RowDefinition { Height = GridLength.Auto });
                 }
 
@@ -142,10 +153,7 @@ namespace Epsiloner.Wpf.Behaviors
                 for (var index = 0; index < items.Count; index++)
                 {
                     var item = items.ElementAtOrDefault(index);
-                    var cc = new ContentControl
-                    {
-                        Content = item
-                    };
+                    var cc = GetOrCreateContentControl(item);
 
                     if (rows > 0)
                     {
@@ -157,9 +165,51 @@ namespace Epsiloner.Wpf.Behaviors
                     {
                         Grid.SetColumn(cc, index);
                     }
-                    AssociatedObject.Children.Add(cc);
                 }
+
+                CleanUpCache(items);
             });
+        }
+
+        /// <summary>
+        /// Tries to find existing <see cref="ContentControl"/> for specified <paramref name="data"/> or create new one.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private ContentControl GetOrCreateContentControl(object data)
+        {
+            lock (_cached)
+            {
+                var rv = _cached.FirstOrDefault(x => ReferenceEquals(x.Content, data));
+                if (rv != null)
+                    return rv;
+
+                rv = new ContentControl
+                {
+                    Content = data
+                };
+                AssociatedObject.Children.Add(rv);
+
+                _cached.Add(rv);
+                return rv;
+            }
+        }
+
+        /// <summary>
+        /// Clean ups cache from removed items.
+        /// </summary>
+        /// <param name="current">Currently used items.</param>
+        private void CleanUpCache(IEnumerable<object> current)
+        {
+            lock (_cached)
+            {
+                var toRemove = _cached.Where(x => !current.Contains(x.Content)).ToList();
+                foreach (var control in toRemove)
+                {
+                    _cached.Remove(control);
+                    AssociatedObject.Children.Remove(control);
+                }
+            }
         }
     }
 }
