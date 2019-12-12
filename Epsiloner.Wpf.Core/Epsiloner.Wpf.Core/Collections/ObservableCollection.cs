@@ -99,7 +99,7 @@ namespace Epsiloner.Wpf.Collections
 
             using (BlockReentrancy())
             {
-                if (e.NewItems.Count <= 1)
+                if (e.NewItems == null || e.NewItems.Count <= 1)
                 {
                     CollectionChanged?.Invoke(this, e);
                 }
@@ -120,7 +120,6 @@ namespace Epsiloner.Wpf.Collections
                             handler(this, e);
                     }
                 }
-
             }
         }
         #endregion
