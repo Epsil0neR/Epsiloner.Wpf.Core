@@ -10,7 +10,7 @@
     <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
     <Description>WPF related things</Description>
 
-    <Version>1.0.13</Version>
+    <Version>1.0.14</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
 
@@ -24,6 +24,8 @@
       <PackageLicenseUrl>https://raw.githubusercontent.com/Epsil0neR/Epsiloner.Wpf.Core/master/LICENSE</PackageLicenseUrl>
       <PackageProjectUrl>https://github.com/Epsil0neR/Epsiloner.Wpf.Core</PackageProjectUrl>
       <PackageReleaseNotes>
+        v1.0.14:
+        ObservableCollection`T - improved method CollectionChanged event raising.
         v1.0.13:
         Introduced xmlns namespace and default prefix.
         TextBlockService - service for TextBlock control that provides few attached dependency properties.

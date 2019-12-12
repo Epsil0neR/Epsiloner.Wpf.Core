@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Windows.Data;
 
 namespace Epsiloner.Wpf.Collections
 {
@@ -74,11 +75,53 @@ namespace Epsiloner.Wpf.Collections
         {
 
             if (_dispatcher != null && !_dispatcher.HasShutdownFinished)
-                _dispatcher.Invoke(() => base.OnCollectionChanged(e));
+                _dispatcher.Invoke(() => OnCollectionChangeAction(e));
             else if (_dispatcher == null)
-                base.OnCollectionChanged(e);
+                OnCollectionChangeAction(e);
+        }
 
 
+        /// <summary>Occurs when an item is added, removed, changed, moved, or the entire list is refreshed.</summary>
+        public override event NotifyCollectionChangedEventHandler CollectionChanged;
+
+        /// <summary>
+        /// Wrapper for extra logic to raise correctly <see cref="OnCollectionChanged"/>.
+        /// </summary>
+        /// <param name="e"></param>
+        /// <remarks>
+        /// Improved taken from:
+        /// https://stackoverflow.com/questions/3300845/observablecollection-calling-oncollectionchanged-with-multiple-new-items
+        /// </remarks>
+        protected virtual void OnCollectionChangeAction(NotifyCollectionChangedEventArgs e)
+        {
+            if (CollectionChanged == null)
+                return;
+
+            using (BlockReentrancy())
+            {
+                if (e.NewItems.Count <= 1)
+                {
+                    CollectionChanged?.Invoke(this, e);
+                }
+                else
+                {
+                    var handlers = CollectionChanged;
+                    if (handlers == null) 
+                        return;
+                    foreach (var @delegate in handlers.GetInvocationList())
+                    {
+                        var handler = @delegate as NotifyCollectionChangedEventHandler;
+                        if (handler == null)
+                            continue;
+
+                        if (handler.Target is CollectionView cv)
+                            cv.Refresh();
+                        else
+                            handler(this, e);
+                    }
+                }
+
+            }
         }
         #endregion
     }
