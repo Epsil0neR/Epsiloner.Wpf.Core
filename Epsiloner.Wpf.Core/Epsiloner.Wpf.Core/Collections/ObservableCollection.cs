@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Data;
@@ -99,14 +100,14 @@ namespace Epsiloner.Wpf.Collections
 
             using (BlockReentrancy())
             {
-                if (e.NewItems == null || e.NewItems.Count <= 1)
+                if ((e.NewItems == null || e.NewItems.Count <= 1) && (e.OldItems == null || e.OldItems.Count <= 1))
                 {
                     CollectionChanged?.Invoke(this, e);
                 }
                 else
                 {
                     var handlers = CollectionChanged;
-                    if (handlers == null) 
+                    if (handlers == null)
                         return;
                     foreach (var @delegate in handlers.GetInvocationList())
                     {
@@ -114,10 +115,55 @@ namespace Epsiloner.Wpf.Collections
                         if (handler == null)
                             continue;
 
-                        if (handler.Target is CollectionView cv)
-                            cv.Refresh();
+                        if (handler.Target is CollectionView)
+                        {
+                            var itemsNew = e.NewItems;
+                            var itemsOld = e.OldItems;
+                            var startNew = e.NewStartingIndex;
+                            var startOld = e.OldStartingIndex;
+
+                            int GetIndexNew(bool b)
+                            {
+                                return startNew < 0
+                                    ? startNew
+                                    : b ? startNew++ : startNew--;
+                            }
+
+                            int GetIndexOld(bool b)
+                            {
+                                return startOld < 0
+                                    ? startOld
+                                    : b ? startOld++ : startOld--;
+                            }
+
+                            switch (e.Action)
+                            {
+                                case NotifyCollectionChangedAction.Add:
+                                    if (itemsNew != null)
+                                        foreach (var item in itemsNew)
+                                        {
+                                            var args = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item, GetIndexNew(true));
+                                            handler(this, args);
+                                        }
+                                    break;
+                                case NotifyCollectionChangedAction.Remove:
+                                    if (itemsOld != null)
+                                        foreach (var item in itemsOld)
+                                        {
+                                            var args = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, item, GetIndexOld(false));
+                                            handler(this, args);
+                                        }
+                                    break;
+
+                                default:
+                                    handler(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+                                    break;
+                            }
+                        }
                         else
+                        {
                             handler(this, e);
+                        }
                     }
                 }
             }
