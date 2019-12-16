@@ -10,7 +10,7 @@
     <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
     <Description>WPF related things</Description>
 
-    <Version>1.0.15</Version>
+    <Version>1.0.16</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
 
@@ -24,7 +24,7 @@
       <PackageLicenseUrl>https://raw.githubusercontent.com/Epsil0neR/Epsiloner.Wpf.Core/master/LICENSE</PackageLicenseUrl>
       <PackageProjectUrl>https://github.com/Epsil0neR/Epsiloner.Wpf.Core</PackageProjectUrl>
       <PackageReleaseNotes>
-        v1.0.15:
+        v1.0.15 + v1.0.16:
         ObservableCollection`T - fixed small bug in CollectionChanged event raising.
         v1.0.14:
         ObservableCollection`T - improved method CollectionChanged event raising.
