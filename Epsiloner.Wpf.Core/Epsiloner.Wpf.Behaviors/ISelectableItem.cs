@@ -1,6 +1,4 @@
-﻿using Epsiloner.Wpf.Behaviors;
-
-namespace Epsiloner.Wpf
+﻿namespace Epsiloner.Wpf.Behaviors
 {
     /// <summary>
     /// Item which can be selected by <see cref="KeyboardNavigationBehavior"/>.
@@ -8,7 +6,7 @@ namespace Epsiloner.Wpf
     public interface ISelectableItem
     {
         /// <summary>
-        /// Indicates that this item is currenty selected.
+        /// Indicates that this item is currently selected.
         /// </summary>
         bool IsSelected { get; set; }
     }

@@ -1,12 +1,12 @@
 ﻿using System;
-using Epsiloner.Wpf.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Interactivity;
 using System.Windows.Markup;
 using System.Windows.Media;
+using Epsiloner.Wpf.Extensions;
+using Microsoft.Xaml.Behaviors;
 
 namespace Epsiloner.Wpf.Behaviors
 {

@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net45;net46;net461;net47;net471</TargetFrameworks>
+    <TargetFrameworks>net45;net46;net461;net47;net471;net5.0-windows</TargetFrameworks>
+    <UseWpf Condition="'$(TargetFramework)' == 'net5.0-windows'">True</UseWpf>
     <Authors>Veniamin Lytkin @ Epsil0neR</Authors>
     <Company>https://github.com/Epsil0neR/Epsiloner.Wpf.Core</Company>
     <Copyright>Copyright © Epsil0neR 2018</Copyright>
@@ -10,7 +11,7 @@
     <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
     <Description>WPF related things</Description>
 
-    <Version>1.0.16</Version>
+    <Version>1.1.1</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
 
@@ -24,6 +25,10 @@
       <PackageLicenseUrl>https://raw.githubusercontent.com/Epsil0neR/Epsiloner.Wpf.Core/master/LICENSE</PackageLicenseUrl>
       <PackageProjectUrl>https://github.com/Epsil0neR/Epsiloner.Wpf.Core</PackageProjectUrl>
       <PackageReleaseNotes>
+        v1.1.0:
+        Removed all Behaviors related code as it is now a separate NuGet package: https://github.com/Epsil0neR/Epsiloner.Wpf.Behaviors
+        Added NET5.0-windows support.
+        Updated Epsiloner.Core refence to latest 1.0.22
         v1.0.15 + v1.0.16:
         ObservableCollection`T - fixed small bug in CollectionChanged event raising.
         v1.0.14:
@@ -77,12 +82,11 @@
 
   <!-- NuGet dependancies -->
   <ItemGroup>
-    <PackageReference Include="Epsiloner.Core" Version="1.0.18" />
-    <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
+    <PackageReference Include="Epsiloner.Core" Version="1.0.22" />
   </ItemGroup>
 
   <!-- References -->
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' != 'net5.0-windows'">
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
