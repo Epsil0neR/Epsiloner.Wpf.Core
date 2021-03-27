@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWpf>True</UseWpf>
+    <Authors>Veniamin Lytkin @ Epsil0neR</Authors>
+    <Company>https://github.com/Epsil0neR/Epsiloner.Wpf.Behaviors</Company>
+    <Copyright>Copyright © Epsil0neR 2018</Copyright>
+
+    <AssemblyName>Epsiloner.Wpf.Behaviors</AssemblyName>
+    <RootNamespace>Epsiloner.Wpf.Behaviors</RootNamespace>
+    <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
+    <Description>WPF Behavior related things</Description>
+
+    <Version>1.0.0</Version>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <FileVersion>$(Version)</FileVersion>
+
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Epsiloner libraries.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <!-- NuGet properties -->
+  <PropertyGroup>
+    <PackageId>$(AssemblyName)</PackageId>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/Epsil0neR/Epsiloner.Wpf.Core/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Epsil0neR/Epsiloner.Wpf.Core</PackageProjectUrl>
+    <PackageReleaseNotes>
+      TBD
+    </PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>Epsiloner Wpf</PackageTags>
+    <PackageVersion>$(Version)-alpha-1</PackageVersion>
+    <PackageDescription>$(Description)</PackageDescription>
+    <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <!-- Documentation -->
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+
+  <!-- Exclude misc files -->
+  <ItemGroup>
+    <None Remove="*.pfx" />
+    <None Remove="*.nupkg" />
+    <None Remove="*.cmd" />
+    <None Remove="packages.config" />
+  </ItemGroup>
+
+  <!-- NuGet dependancies -->
+  <ItemGroup>
+    <PackageReference Include="Epsiloner.Core" Version="1.0.18" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
+    <!--<PackageReference Include="Epsiloner.Wpf.Core" Version="1.0.16" />-->
+  </ItemGroup>
+
+</Project>
