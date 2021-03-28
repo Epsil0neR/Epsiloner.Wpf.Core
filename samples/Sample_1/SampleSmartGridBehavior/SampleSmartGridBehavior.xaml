@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sample_1.SampleSmartGridBehavior"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:behaviors="clr-namespace:Epsiloner.Wpf.Behaviors;assembly=Epsiloner.Wpf.Core"
+        xmlns:behaviors="clr-namespace:Epsiloner.Wpf.Behaviors;assembly=Epsiloner.Wpf.Behaviors"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="SampleSmartGridBehavior" Height="450" Width="800">
     <Window.DataContext>
@@ -17,10 +17,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <i:Interaction.Behaviors>
+            <b:Interaction.Behaviors>
                 <behaviors:SmartGridBehavior 
                     ItemsSource="{Binding TextBlocks}" />
-            </i:Interaction.Behaviors>
+            </b:Interaction.Behaviors>
         </Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Button Command="{Binding AddCommand}">Add</Button>

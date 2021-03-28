@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sample_1.SampleApplyStyleForSelectedBehavior"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:behaviors="clr-namespace:Epsiloner.Wpf.Behaviors;assembly=Epsiloner.Wpf.Core"
+        xmlns:behaviors="clr-namespace:Epsiloner.Wpf.Behaviors;assembly=Epsiloner.Wpf.Behaviors"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="SampleApplyStyleForSelectedBehavior" Height="450" Width="800">
     <Window.DataContext>
@@ -31,7 +31,7 @@
             <LineBreak />
             <Run Text="Mid list uses ApplyStyleForSelectedBehavior where Selected is used from ViewModel (data context)." />
             <LineBreak />
-            <Run Text="Right list uses ApplyStyleForSelectedBehavior where Selected is used from another control. Basically it can be any Bindning." />
+            <Run Text="Right list uses ApplyStyleForSelectedBehavior where Selected is used from another control. Basically it can be any Binding." />
         </TextBlock>
 
 
@@ -42,27 +42,27 @@
 
         <ItemsControl Grid.Column="1" Grid.Row="1"
                       ItemsSource="{Binding Items, Mode=OneWay}">
-            <i:Interaction.Behaviors>
+            <b:Interaction.Behaviors>
                 <behaviors:ApplyStyleForSelectedBehavior BringSelectedIntoView="True" Selected="{Binding Selected}">
                     <Style TargetType="TextBlock">
                         <Setter Property="Background" Value="LightCoral" />
                         <Setter Property="Foreground" Value="DodgerBlue" />
                     </Style>
                 </behaviors:ApplyStyleForSelectedBehavior>
-            </i:Interaction.Behaviors>
+            </b:Interaction.Behaviors>
         </ItemsControl>
 
 
         <ItemsControl Grid.Column="2" Grid.Row="1"
                       ItemsSource="{Binding Items, Mode=OneWay}">
-            <i:Interaction.Behaviors>
+            <b:Interaction.Behaviors>
                 <behaviors:ApplyStyleForSelectedBehavior BringSelectedIntoView="True" Selected="{Binding ElementName=ListBox, Path=SelectedItem}">
                     <Style TargetType="TextBlock">
                         <Setter Property="Background" Value="LightCoral" />
                         <Setter Property="Foreground" Value="DodgerBlue" />
                     </Style>
                 </behaviors:ApplyStyleForSelectedBehavior>
-            </i:Interaction.Behaviors>
+            </b:Interaction.Behaviors>
         </ItemsControl>
 
 
@@ -73,14 +73,14 @@
                  ItemsSource="{Binding EmptyList, Mode=OneWay}"/>
         <ItemsControl Grid.Column="2" Grid.Row="2"
                       ItemsSource="{Binding EmptyList, Mode=OneWay}">
-            <i:Interaction.Behaviors>
+            <b:Interaction.Behaviors>
                 <behaviors:ApplyStyleForSelectedBehavior BringSelectedIntoView="True" Selected="{Binding SelectedEmpty}">
                     <Style TargetType="TextBlock">
                         <Setter Property="Background" Value="LightCoral" />
                         <Setter Property="Foreground" Value="DodgerBlue" />
                     </Style>
                 </behaviors:ApplyStyleForSelectedBehavior>
-            </i:Interaction.Behaviors>
+            </b:Interaction.Behaviors>
         </ItemsControl>
         <Button Grid.Column="1" Grid.Row="2" 
                 Content="Add item" 

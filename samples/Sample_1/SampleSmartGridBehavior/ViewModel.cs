@@ -29,7 +29,7 @@ namespace Sample_1.SampleSmartGridBehavior
 
         private void Add(object obj)
         {
-            TextBlocks.Add(new TextBlock() { Text = (TextBlocks.Count + 1).ToString() });
+            TextBlocks.Add(new TextBlock { Text = (TextBlocks.Count + 1).ToString() });
         }
 
         private void Remove(object obj)

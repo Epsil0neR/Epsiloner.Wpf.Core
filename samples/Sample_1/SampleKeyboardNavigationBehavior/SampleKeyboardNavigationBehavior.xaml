@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sample_1.SampleKeyboardNavigationBehavior"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:behaviors="clr-namespace:Epsiloner.Wpf.Behaviors;assembly=Epsiloner.Wpf.Core"
+        xmlns:behaviors="clr-namespace:Epsiloner.Wpf.Behaviors;assembly=Epsiloner.Wpf.Behaviors"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="SampleKeyboardNavigationBehavior" Height="450" Width="800">
     <Window.DataContext>
@@ -38,12 +38,12 @@
         </TextBlock>
     </StackPanel>
 
-    <i:Interaction.Behaviors>
+    <b:Interaction.Behaviors>
         <behaviors:KeyboardNavigationBehavior 
             Selected="{Binding Selected, Mode=TwoWay}"
             Items="{Binding Items, Mode=OneWay}"
             IsEnabled="{Binding IsChecked, ElementName=chkIsEnabled, Mode=OneWay}"
             ActivateSelectedCommand="{Binding ActivateCommand, Mode=OneWay}"
             />
-    </i:Interaction.Behaviors>
+    </b:Interaction.Behaviors>
 </Window>

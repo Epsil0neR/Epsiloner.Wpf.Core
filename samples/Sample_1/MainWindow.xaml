@@ -32,7 +32,10 @@
         <TextBlock Text="Extensions:" />
         <Button Click="MultiStyleExtension_OnClick" Content="MultiStyleExtension" />
         <Separator />
-
+        
+        <Button Click="XamlUtilsSave_OnClick" Content="XamlUtils.Save"/>
+        <Separator />
+            
         <TextBlock TextWrapping="Wrap" MaxHeight="255" TextTrimming="CharacterEllipsis">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
