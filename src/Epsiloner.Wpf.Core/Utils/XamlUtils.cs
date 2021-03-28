@@ -40,8 +40,8 @@ namespace Epsiloner.Wpf.Utils
             var dir = Path.GetDirectoryName(path);
             Directory.CreateDirectory(dir);
 
-            XmlWriterSettings settings = new XmlWriterSettings { Indent = true };
-            using (XmlWriter writer = XmlWriter.Create(path, settings))
+            var settings = new XmlWriterSettings { Indent = true };
+            using (var writer = XmlWriter.Create(path, settings))
             {
                 XamlWriter.Save(data, writer);
             }

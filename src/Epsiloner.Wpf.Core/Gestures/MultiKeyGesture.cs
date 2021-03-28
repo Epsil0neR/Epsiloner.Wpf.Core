@@ -25,7 +25,7 @@ namespace Epsiloner.Wpf.Gestures
         private DateTime _lastKeyPress = DateTime.MinValue;
         private IEnumerator<Gesture> _enumerator;
 
-        internal IEnumerable<Gesture> Gestures { get; }
+        public IEnumerable<Gesture> Gestures { get; }
 
         public MultiKeyGesture(IEnumerable<Gesture> gestures)
             : base(Key.None)
@@ -36,8 +36,7 @@ namespace Epsiloner.Wpf.Gestures
             if (!g.Any())
                 throw new ArgumentException("Gestures must have at least 1 valid gesture.", nameof(gestures));
 
-            Gestures = g;
-            //TODO: Generate DisplayString
+            Gestures = g.AsReadOnly();
         }
 
         /// <summary>

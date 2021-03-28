@@ -24,7 +24,7 @@ namespace Epsiloner.Wpf.KeyBinding
         /// <exception cref="InvalidOperationException">Can be thrown if <see cref="IsLocked"/> set to <see cref="bool.True"/>.</exception>
         public string Name
         {
-            get { return _name; }
+            get => _name;
             set
             {
                 if (ReferenceEquals(_name, value))
@@ -44,7 +44,7 @@ namespace Epsiloner.Wpf.KeyBinding
         /// <exception cref="InvalidOperationException">Can be thrown if <see cref="IsLocked"/> set to <see cref="bool.True"/>.</exception>
         public string Description
         {
-            get { return _description; }
+            get => _description;
             set
             {
                 if (ReferenceEquals(_description, value))
@@ -66,7 +66,7 @@ namespace Epsiloner.Wpf.KeyBinding
         [ValueSerializer(typeof(MultiKeyGestureSerializer))]
         public KeyGesture Gesture
         {
-            get { return _gesture; }
+            get => _gesture;
             set
             {
                 if (ReferenceEquals(_gesture, value))
@@ -91,7 +91,7 @@ namespace Epsiloner.Wpf.KeyBinding
         /// </summary>
         public bool IsHidden
         {
-            get { return _isHidden; }
+            get => _isHidden;
             set
             {
                 if (_isHidden == value)

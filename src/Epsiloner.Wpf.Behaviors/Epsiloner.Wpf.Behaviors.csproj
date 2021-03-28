@@ -16,7 +16,7 @@
     <FileVersion>$(Version)</FileVersion>
 
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Epsiloner libraries.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>../../Epsiloner libraries.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <!-- NuGet properties -->

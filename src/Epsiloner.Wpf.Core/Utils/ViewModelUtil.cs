@@ -77,7 +77,7 @@ namespace Epsiloner.Wpf.Utils
         /// <returns></returns>
         public bool Set<T>(ref T backingField, T newValue, [CallerMemberName] string propertyName = null, params string[] dependingPropertyNames)
         {
-            bool valueChanged = !EqualityComparer<T>.Default.Equals(backingField, newValue);
+            var valueChanged = !EqualityComparer<T>.Default.Equals(backingField, newValue);
             if (valueChanged)
             {
                 backingField = newValue;

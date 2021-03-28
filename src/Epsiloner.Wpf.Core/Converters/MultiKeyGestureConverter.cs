@@ -58,10 +58,13 @@ namespace Epsiloner.Wpf.Converters
                     }
                     key = (Key)_keyConverter.ConvertFrom(pair.Last());
                 }
-                rv.Add(new Gesture(key, modifier));
+
+                var gesture = new Gesture(key, modifier);
+                if (gesture.IsValid())
+                    rv.Add(gesture);
             }
 
-            return new MultiKeyGesture(rv);
+            return rv.Count > 0 ? new MultiKeyGesture(rv) : null;
         }
     }
 }

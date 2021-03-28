@@ -1,4 +1,5 @@
-﻿using System.Windows.Markup;
+﻿using System.Runtime.CompilerServices;
+using System.Windows.Markup;
 
 [assembly: XmlnsPrefix("http://schemas.epsiloner.git/wpf/", "e")]
 [assembly: XmlnsDefinition("http://schemas.epsiloner.git/wpf/", "Epsiloner.Wpf.Behaviors")]
