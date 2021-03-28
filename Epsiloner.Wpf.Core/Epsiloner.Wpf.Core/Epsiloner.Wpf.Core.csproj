@@ -11,7 +11,7 @@
     <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
     <Description>WPF related things</Description>
 
-    <Version>1.1.1</Version>
+    <Version>1.2.0</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
 
@@ -25,6 +25,8 @@
       <PackageLicenseUrl>https://raw.githubusercontent.com/Epsil0neR/Epsiloner.Wpf.Core/master/LICENSE</PackageLicenseUrl>
       <PackageProjectUrl>https://github.com/Epsil0neR/Epsiloner.Wpf.Core</PackageProjectUrl>
       <PackageReleaseNotes>
+        v1.2.0:
+        Added gestures and KeyBinding functionality from Epsiloner.Wpf.Keyboard that now is obsolete.
         v1.1.0:
         Removed all Behaviors related code as it is now a separate NuGet package: https://github.com/Epsil0neR/Epsiloner.Wpf.Behaviors
         Added NET5.0-windows support.
