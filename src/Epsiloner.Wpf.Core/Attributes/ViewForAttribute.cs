@@ -29,10 +29,7 @@ namespace Epsiloner.Wpf.Attributes
         }
         #endregion
 
-
-
         #region Fields
-
         /// <summary>
         /// Shortcut for this type.
         /// </summary>
@@ -63,7 +60,6 @@ namespace Epsiloner.Wpf.Attributes
         {
             _bestMatchingTypes[modelType] = viewType;
         }
-
 
         /// <summary>
         /// Proceeds assembly and registers best matching types to views.
@@ -107,7 +103,6 @@ namespace Epsiloner.Wpf.Attributes
                 ProceedAssembly(assembly);
             }
         }
-
 
         /// <summary>
         /// Gets best matching registered view for specified model type.
