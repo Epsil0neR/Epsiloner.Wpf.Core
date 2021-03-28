@@ -29,7 +29,7 @@ namespace Epsiloner.Wpf.Behaviors
         /// Selected item from <see cref="ItemsProperty"/> list.
         /// </summary>
         public static DependencyProperty SelectedProperty = DependencyProperty.Register(nameof(Selected), typeof(object), typeof(KeyboardNavigationBehavior),
-            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, SeletedPropertyChangedCallback));
+            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, SelectedPropertyChangedCallback));
 
         /// <summary>
         /// Indicates if navigation between items is enabled.
@@ -52,16 +52,14 @@ namespace Epsiloner.Wpf.Behaviors
         /// </summary>
         public static DependencyProperty ActivateSelectedItemKeyProperty = DependencyProperty.Register(nameof(ActivateSelectedItemKey), typeof(Key), typeof(KeyboardNavigationBehavior), new PropertyMetadata(Key.Enter));
 
-        private static void SeletedPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void SelectedPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             //In case old value implements ISelectableItem - set IsSelected to false
-            var o = e.OldValue as ISelectableItem;
-            if (o != null)
+            if (e.OldValue is ISelectableItem o)
                 o.IsSelected = false;
 
             //In case new value implements ISelectableItem - set IsSelected to true
-            var n = e.NewValue as ISelectableItem;
-            if (n != null)
+            if (e.NewValue is ISelectableItem n)
                 n.IsSelected = true;
         }
 
